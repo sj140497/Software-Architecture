@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CustomerApplication.ViewModels.OrderHistoryVM>
+
+@{
+    ViewBag.Title = "OrderHistory";
+}
+
+<h2>Order History for @User.Identity.Name</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchaseOrderNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatusDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderedItemsString)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseOrderNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatusDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderedItemsString)
+        </td>
+        <td>
+            @Html.ActionLink("View Invoice", "Invoices", new { orderID = item.PurchaseOrderNo })
+        </td>
+    </tr>
+}
+
+
+</table>
+<p>
+    @Html.ActionLink("Back to List", "Index", "Home")
+</p>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CustomerApplication.ViewModels.MessagesVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Messages for @User.Identity.Name</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SenderNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contents)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SenderNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contents)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "deleteMessage", new {id=item.Id})
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Back to List", "Index", "Home") 
+</p>
